@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block body %}
+<br><br>
+
+
+<section class="section case-study">
+	<div class="container">
+		<div class="row">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="case-img">
+						<img src="{{ singel_service.images.url }}" alt="" class="img-fluid">
+					</div>
+				</div>
+				
+				<div class="col-lg-6 col-md-8">
+					<div class="case-content pl-4 mt-4 mt-lg-0">
+						<h3 class="mb-3">{{ singel_service.service_name }}</h3>
+						<p>{{ singel_service.sm_description }}</p>
+						<ul class="list-unstyled project-info-list">
+							<li><strong>Category Name: </strong>{{ singel_service.Service_category }}</li>
+
+							<li><strong>Price : </strong>$ {{ singel_service.price }}</li>
+							<li><strong>Delivery Time:</strong> {{ singel_service.delivary_time }}</li>
+							<li><strong>Avalable </strong> {{ singel_service.is_available }}</li>
+							<li><strong>Update service Date:</strong> {{ singel_service.modified_date }}</li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<br><br>
+
+<div class="container">
+	{{ singel_service.description }}
+</div>
+<br><br>
+
+{% endblock %}

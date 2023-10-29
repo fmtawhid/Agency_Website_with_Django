@@ -1,0 +1,155 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block body %}
+
+<br><br>
+
+<!-- Slider Start-->
+<section class="bannerhome d-flex justify-content-center align-items-center" style="background-image: url('{% static '/images/bg/main-banner1.png' %}'); height: 100vh; background-size: cover; background-position: center;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-md-12 col-xl-8">
+        <div class="block">
+          <span class="text-uppercase text-sm letter-spacing">Create Your Unique Software</span>
+          <h1 class="mb-3 mt-3">Website Design &<br> Developer</h1>
+          <p class="mb-5 w-75">Hello World, We Are CSE Student Team In <b>SSR Institute of Technology</b>. We have an Experienced Team for Web Development, Software Development, and Bug Fixing. Hope you will like our service and Enjoy.</p>
+          <a href="{% url 'about' %}" target="_blank" class="btn btn-main">About Me<i class="fa fa-angle-right ml-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+	
+<!--Product Card View Service-->
+
+<section class="container pt-3 mb-3">
+    <h2 class="h2 block-title text-center">Our Services </small></h2>
+    <div class="row pt-5 mt-30">
+
+	<!--Service Section Template -->
+		{% for service in services %}
+			<div class="col-lg-4 col-sm-6 mb-30 pb-5">
+				<div class="card">
+					<img src="{{ service.images.url }}" class="card-img-top" width="100%">
+					<div class="card-body pt-0 px-0">
+						<div class="d-flex flex-row justify-content-between mb-0 px-3">
+							<small class="text-muted mt-1">STARTING AT</small>
+							<h6>&dollar;{{ service.price }}&ast;</h6>
+						</div>
+						<hr class="mt-2 mx-3">
+						<div class="d-flex flex-row justify-content-between px-3 pb-4">
+							<div class="d-flex flex-column"><span class="text-muted">Name: </span></div>
+							<div class="d-flex flex-column"><h6 class="mb-0">{{ service.service_name }}</h6></div>
+						</div>
+						<div class="d-flex flex-row justify-content-between px-3 pb-4">
+							<div class="d-flex flex-column"><span class="text-muted">Catagory </span></div>
+							<div class="d-flex flex-column"><h6 class="mb-0">{{ service.Service_category }}</h6></div>
+						</div>
+						
+
+						<div class="mx-3 mt-3 mb-2">
+							<a href="{{ service.get_url }}" class="btn btn-danger btn-block"><small>BUILD & PRICE</small></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+    </div>
+</section>
+
+
+
+<!-- section portfolio start -->
+<section class="section portfolio pb-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="heading">
+					<h2 class="mb-4">How did we complete the <span class="text-color-primary"> experience?</h2>
+					<p>We have completed a lot of work over the past year. We got a lot of experience from there. If you want to see our work, click the button below.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row portfolio-gallery">
+			{% for portfolio in projecList %}
+			<div class="col-lg-4 col-md-6">
+				<div class="portflio-item position-relative mb-4">
+					<a href="{{portfolio.proUrl}}">
+						<img src="{{portfolio.proIimg.url}}" alt="" class="img-fluid w-100">
+						<div class="overlay-item"><i class="ti-link"></i></div>	
+						
+						<div class="portfolio-item-content">
+							<h3 class="mb-0 text-white">{{portfolio.proTitle}}</h3>
+							<p class="text-white-50">{{portfolio.proCata}}</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<!-- section portfolio END -->
+<!-- section Counter Start -->
+<section class="section counter">
+	<div class="container">
+		<div class="row">
+			{% for cntr in cntr %}
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="counter-item text-center mb-5 mb-lg-0">
+					<h2 class="mb-0"><span class="counter-stat font-weight-bold">{{ cntr.nmNumber }}</span> +</h2>
+					<p>{{ cntr.nmCounter }}</p>
+				</div>
+			</div>
+			{% endfor %}
+
+			
+
+		</div>
+	</div>
+</section>
+<!-- section Counter End  -->
+
+<!-- section  testimonial-->
+
+<section class="section testimonial">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="heading">
+					<h2 class="mb-4">What they say about us</h2>
+					<p>They are truely amazing in the industry ,molestiae expedita aspernatur officia, similique minima laudantium. Corrupti ipsa perspiciatis commodi nesciunt rerum mollitia enim voluptate!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 testimonial-wrap">
+
+				{% for rvlst in rvlst %}
+				<div class="testimonial-block">
+					<p>{{rvlst.bayarDisc}}</p>
+					<div class="client-info d-flex align-items-center">
+						<div class="client-img">
+							<img src="{{rvlst.bayarImg.url}}" alt="" class="img-fluid">
+						</div>
+						<div class="info">
+							<h6>{{rvlst.bayarName}}</h6>
+							<span>{{rvlst.bayarLoct}}</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

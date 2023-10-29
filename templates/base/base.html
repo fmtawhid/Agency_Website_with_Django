@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+<html lang="zxx">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
+  <meta name="author" content="themefisher.com">
+  
+  <!-- theme meta -->
+  <meta name="theme-name" content="orbitor" />
+
+  <title> Tech NYC IT - We are Service Provider</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/smlogo.jpg' %}" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Icon Font Css -->
+  <script src="https://kit.fontawesome.com/9ab9916eee.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'plugins/themify/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/magnific-popup/dist/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/modal-video/modal-video.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/animate-css/animate.css' %}">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick/slick-theme.css' %}">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+
+<!-- Menu Section -->
+<nav class="navbar navbar-expand-lg py-4 navigation header-padding " id="navbar">
+	<div class="container-fluid">
+	  <a class="navbar-brand" href="/">
+		  <img src="{{ logo.company_logo.url }}" alt="" class="img-fluid">
+	  </a>
+
+	  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="fa fa-bars"></span>
+	  </button>
+  
+	  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+		<ul class="navbar-nav m-auto">
+		  <li class="nav-item active">
+			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		  </li>
+		   <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="{% url 'service' %}">Services</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdown05">
+					{% for cat in category %}
+					<li><a class="dropdown-item" href="{% url 'service_by_category' category_slug=cat.cat_slug %}">{{ cat.cat_name }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
+		   <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Newslatter</a></li>
+		   <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+		   
+		</ul>
+
+		<a href="{% url 'contact' %}" class="btn btn-solid-border d-none d-lg-block">Get an estimate <i class="fa fa-angle-right ml-2"></i></a>
+	  </div>
+	</div>
+</nav>
+{% block body %}{% endblock %}
+
+<!-- fotter Content -->
+
+<footer class="footer section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 mr-auto col-sm-6">
+				<div class="widget mb-5 mb-lg-0">
+					<div class="logo mb-4">
+						<img src="{{ logo.company_logo.url }}" alt="" class="img-fluid">
+					</div>
+					<p>Tech IT is a fictional software company that could be involved in developing and distributing software products for a variety of industries such as healthcare, finance, education, and entertainment..</p>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-6 col-sm-6">
+				<div class="widget mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-4">Our Item</h4>
+
+					<ul class="list-unstyled footer-menu lh-35">
+						<li><a href="{% url 'service' %}">Services</a></li>
+						<li><a href="{% url 'about' %}">About</a></li>
+						<li><a href="{% url 'portfolio' %}">Portfolio </a></li>
+						<li><a href="{% url 'blog' %}">Newslatter </a></li>
+						<li><a href="{% url 'contact' %}">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="widget mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-4">Catagory</h4>
+
+					<ul class="list-unstyled footer-menu lh-35">
+					{% for cat in category %}
+						<li><a href="{% url 'service_by_category' category_slug=cat.cat_slug %}">{{ cat.cat_name }}</a></li>
+					{% endfor %}
+					</ul>	
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="widget widget-contact mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-4">Get in Touch</h4>
+
+					{% for ct_add in contacts_adress %}
+					<h6 style="color:white;">{{ct_add.contact_addres}}</h6>
+					{% endfor %}
+
+					<ul class="list-inline footer-socials mt-5">
+						{% for social in social_link%}
+							<li class="list-inline-item">
+								<a href="{{ social.social_url }}">
+									<img src="{{ social.social_icon.url }}" alt="{{ social.social_name }}" style="margin-right: 10px; width: 28px; height: 28px;">
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-btm py-4 mt-5">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="copyright">
+						&copy; Copyright Reserved to This <span class="text-color">Tech IT NYC </span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+   
+    
+    <!-- Main jQuery -->
+    <script src="{% static 'plugins/jquery/jquery.js' %}"></script>
+    <script src="{% static 'js/contact.js' %}"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="{% static 'plugins/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+   <!--  Magnific Popup-->
+    <script src="{% static 'plugins/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Slick Slider -->
+    <script src="{% static 'plugins/slick-carousel/slick/slick.min.js' %}"></script>
+    <!-- Counterup -->
+    <script src="{% static 'plugins/counterup/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'plugins/counterup/jquery.counterup.min.js' %}"></script>
+
+     <script src="{% static 'plugins/modal-video/modal-video.js' %}"></script>
+    <!-- Google Map -->
+    <script src="{% static 'plugins/google-map/map.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    
+    <script src="{% static 'js/script.js' %}"></script>
+
+
+</body>
+</html>

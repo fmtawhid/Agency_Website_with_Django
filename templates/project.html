@@ -1,0 +1,46 @@
+{% extends 'base/base.html'  %}
+{% load static %}
+{% block body %}
+
+<br><br><br>
+
+<!-- section portfolio start -->
+<section class="section portfolio">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-8">
+				<div class="heading text-center">
+					<h2 class="mb-4">Let’s Check Some Works</h2>
+					<p>We have the best experts to elevate your business to the next level, try is and you will see! We have the best experts to elevate your </p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row ">
+
+			{% for pro in proLi %}
+
+			<div class="col-lg-4 col-md-6">
+				<div class="portflio-item position-relative mb-4">
+					<a href="{{pro.proUrl}}">
+						<img src="{{pro.proIimg.url}}" alt="" class="img-fluid w-100">
+						<div class="overlay-item"><i class="ti-link"></i></div>	
+						
+						<div class="portfolio-item-content">
+							<h3 class="mb-0 text-white">{{pro.proTitle}}</h3>
+							<p class="text-white-50">{{pro.proCata}}</p>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<!-- section portfolio END -->
+
+{% endblock %}
